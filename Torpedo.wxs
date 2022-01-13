@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+   <Product Id="*" UpgradeCode="12345678-1234-1234-1234-111111111111" 
+            Name="Torpedo" Version="1.0.0" Manufacturer="Example Company Name" Language="1033">
+      <Package InstallerVersion="200" Compressed="yes" Comments="Windows Installer Package For the TOR protocol"/>
+      <Media Id="1" Cabinet="product.cab" EmbedCab="yes"/>
+
+      <Directory Id="TARGETDIR" Name="SourceDir">
+         <Directory Id="ProgramFilesFolder">
+            <Directory Id="ApplicationFolder" Name="tor-win32.0.4.6.9"> 
+               <Directory Id="Data" Name="Data">
+                  <Directory Id="TorData" Name="Tor">
+                     <Component Id="geoip" Guid="12345678-1234-1234-1234-222222222222">
+                        <File Id="geoip" Source="tor-win32.0.4.6.9\Data\Tor\geoip" KeyPath="yes"/>
+                     </Component>
+                     <Component Id="geoip6" Guid="12345678-1234-1234-1234-222222222223">
+                        <File Id="geoip6" Source="tor-win32.0.4.6.9\Data\Tor\geoip6" KeyPath="yes"/>
+                     </Component>
+                  </Directory>
+               </Directory>
+               <Directory Id="Tor" Name="Tor">
+                  <Component Id="libcrypto" Guid="12345678-1234-1234-1234-222222222224">
+                     <File Id="libcrypto1_1" Source="tor-win32.0.4.6.9\Tor\libcrypto-1_1.dll" KeyPath="yes"/>
+                  </Component>
+                  <Component Id="libevent_core" Guid="12345678-1234-1234-1234-222222222225">
+                     <File Id="libevent_core.2.1.7" Source="tor-win32.0.4.6.9\Tor\libevent_core-2-1-7.dll" KeyPath="yes"/>
+                  </Component>
+                  <Component Id="libevent_extra" Guid="12345678-1234-1234-1234-222222222226">
+                     <File Id="libevent_extra.2.1.7" Source="tor-win32.0.4.6.9\Tor\libevent_extra-2-1-7.dll" KeyPath="yes"/>
+                  </Component>
+                  <Component Id="libevent" Guid="12345678-1234-1234-1234-222222222227">
+                     <File Id="libevent.2.1.7" Source="tor-win32.0.4.6.9\Tor\libevent-2-1-7.dll" KeyPath="yes"/>
+                  </Component>
+                  <Component Id="libgcc" Guid="12345678-1234-1234-1234-222222222228">
+                     <File Id="libgcc_s_dw2.1" Source="tor-win32.0.4.6.9\Tor\libgcc_s_dw2-1.dll" KeyPath="yes"/>
+                  </Component>
+                  <Component Id="libssl" Guid="12345678-1234-1234-1234-222222222229">
+                     <File Id="libssl.1_1" Source="tor-win32.0.4.6.9\Tor\libssl-1_1.dll" KeyPath="yes"/>
+                  </Component>
+                  <Component Id="libssp" Guid="12345678-1234-1234-1234-222222222230">
+                     <File Id="libssp.0" Source="tor-win32.0.4.6.9\Tor\libssp-0.dll" KeyPath="yes"/>
+                  </Component>
+                  <Component Id="libwinpthread" Guid="12345678-1234-1234-1234-222222222231">
+                     <File Id="libwinpthread.1" Source="tor-win32.0.4.6.9\Tor\libwinpthread-1.dll" KeyPath="yes"/>
+                  </Component>
+                  <Component Id="tor.gencert" Guid="12345678-1234-1234-1234-222222222232">
+                     <File Id="tor.gencert" Source="tor-win32.0.4.6.9\Tor\tor-gencert.exe" KeyPath="yes"/>
+                  </Component>
+                  <Component Id="tor" Guid="12345678-1234-1234-1234-222222222233">
+                     <File Id="tor" Source="tor-win32.0.4.6.9\Tor\tor.exe" KeyPath="yes"/>
+                  </Component>
+                  <Component Id="zlib" Guid="12345678-1234-1234-1234-222222222234">
+                     <File Id="zlib1" Source="tor-win32.0.4.6.9\Tor\zlib1.dll" KeyPath="yes"/>
+                  </Component>
+               </Directory>
+            </Directory>
+         </Directory>
+      </Directory>
+
+      <Feature Id="DefaultFeature" Level="1">
+         <ComponentRef Id="geoip"/>
+         <ComponentRef Id="geoip6"/>
+         <ComponentRef Id="libcrypto"/>
+         <ComponentRef Id="libevent_core"/>
+         <ComponentRef Id="libevent_extra"/>
+         <ComponentRef Id="libevent"/>
+         <ComponentRef Id="libgcc"/>
+         <ComponentRef Id="libssl"/>
+         <ComponentRef Id="libssp"/>
+         <ComponentRef Id="libwinpthread"/>
+         <ComponentRef Id="tor.gencert"/>
+         <ComponentRef Id="tor"/>
+         <ComponentRef Id="zlib"/>
+      </Feature>
+   </Product>
+</Wix>
