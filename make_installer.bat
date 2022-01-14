@@ -1,3 +1,3 @@
 candle Torpedo.wxs
-light Torpedo.wixobj
+light -ext WixUIExtension -cultures:en-us Torpedo.wixobj -out Torpedo.msi
 @pause

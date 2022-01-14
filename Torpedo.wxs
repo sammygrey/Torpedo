@@ -1,55 +1,94 @@
 <?xml version="1.0"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
    <Product Id="*" UpgradeCode="12345678-1234-1234-1234-111111111111" 
-            Name="Torpedo" Version="1.0.0" Manufacturer="Example Company Name" Language="1033">
-      <Package InstallerVersion="200" Compressed="yes" Comments="Windows Installer Package For the TOR protocol"/>
+            Name="Tor" Version="1.0.0" Manufacturer="Torpedo" Language="1033">  
+      <Package Id="*" InstallerVersion="200" Compressed="yes" Comments="Windows Installer Package For the TOR protocol"/>
+      <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
       <Media Id="1" Cabinet="product.cab" EmbedCab="yes"/>
 
       <Directory Id="TARGETDIR" Name="SourceDir">
+         <!-- Desktop Folder Directory -->
+         <Directory Id="DesktopFolder" Name="Desktop">
+            <Component Id="ApplicationShortcutDesktop" Guid="*">
+               <Shortcut Id="ApplicationDesktopShortcut"
+                Name="Tor Relay"
+                Description="Tor relay launcher."
+                Target="[Tor]tor.exe"
+                WorkingDirectory="Tor"/>
+               <RemoveFolder Id="DesktopFolder" On="uninstall"/>
+               <RegistryValue
+                Root="HKCU"
+                Key="Software\tor-win32.0.4.6.9"
+                Name="installed"
+                Type="integer"
+                Value="1"
+                KeyPath="yes"/>
+            </Component>
+         </Directory>
+         <!-- Startup Folder Directory -->
+         <Directory Id="StartupFolder" Name="Startup">
+            <!-- FIX GUID TO NOT BE HARDCODED HERE -->
+            <Component Id="ApplicationShortcutStartup" Guid="CDBF9040-F906-5F7E-9228-F04EDD0C4DCC" >
+               <Shortcut Id="ApplicationStartupShortcut"
+                Name="Tor Relay"
+                Description="Tor relay launher."
+                Target="[Tor]tor.exe"
+                WorkingDirectory="Tor"/>
+               <RemoveFolder Id="StartupFolder" On="uninstall"/>
+               <RegistryValue
+                Root="HKCU"
+                Key="Software\tor-win32.0.4.6.9"
+                Name="installed"
+                Type="integer"
+                Value="1"
+                KeyPath="yes"/>
+            </Component>
+         </Directory>
+         <!-- Programs Folder Directory -->
          <Directory Id="ProgramFilesFolder">
             <Directory Id="ApplicationFolder" Name="tor-win32.0.4.6.9"> 
                <Directory Id="Data" Name="Data">
                   <Directory Id="TorData" Name="Tor">
-                     <Component Id="geoip" Guid="12345678-1234-1234-1234-222222222222">
+                     <Component Id="geoip" Guid="*">
                         <File Id="geoip" Source="tor-win32.0.4.6.9\Data\Tor\geoip" KeyPath="yes"/>
                      </Component>
-                     <Component Id="geoip6" Guid="12345678-1234-1234-1234-222222222223">
+                     <Component Id="geoip6" Guid="*">
                         <File Id="geoip6" Source="tor-win32.0.4.6.9\Data\Tor\geoip6" KeyPath="yes"/>
                      </Component>
                   </Directory>
                </Directory>
                <Directory Id="Tor" Name="Tor">
-                  <Component Id="libcrypto" Guid="12345678-1234-1234-1234-222222222224">
+                  <Component Id="libcrypto" Guid="*">
                      <File Id="libcrypto1_1" Source="tor-win32.0.4.6.9\Tor\libcrypto-1_1.dll" KeyPath="yes"/>
                   </Component>
-                  <Component Id="libevent_core" Guid="12345678-1234-1234-1234-222222222225">
+                  <Component Id="libevent_core" Guid="*">
                      <File Id="libevent_core.2.1.7" Source="tor-win32.0.4.6.9\Tor\libevent_core-2-1-7.dll" KeyPath="yes"/>
                   </Component>
-                  <Component Id="libevent_extra" Guid="12345678-1234-1234-1234-222222222226">
+                  <Component Id="libevent_extra" Guid="*">
                      <File Id="libevent_extra.2.1.7" Source="tor-win32.0.4.6.9\Tor\libevent_extra-2-1-7.dll" KeyPath="yes"/>
                   </Component>
-                  <Component Id="libevent" Guid="12345678-1234-1234-1234-222222222227">
+                  <Component Id="libevent" Guid="*">
                      <File Id="libevent.2.1.7" Source="tor-win32.0.4.6.9\Tor\libevent-2-1-7.dll" KeyPath="yes"/>
                   </Component>
-                  <Component Id="libgcc" Guid="12345678-1234-1234-1234-222222222228">
+                  <Component Id="libgcc" Guid="*">
                      <File Id="libgcc_s_dw2.1" Source="tor-win32.0.4.6.9\Tor\libgcc_s_dw2-1.dll" KeyPath="yes"/>
                   </Component>
-                  <Component Id="libssl" Guid="12345678-1234-1234-1234-222222222229">
+                  <Component Id="libssl" Guid="*">
                      <File Id="libssl.1_1" Source="tor-win32.0.4.6.9\Tor\libssl-1_1.dll" KeyPath="yes"/>
                   </Component>
-                  <Component Id="libssp" Guid="12345678-1234-1234-1234-222222222230">
+                  <Component Id="libssp" Guid="*">
                      <File Id="libssp.0" Source="tor-win32.0.4.6.9\Tor\libssp-0.dll" KeyPath="yes"/>
                   </Component>
-                  <Component Id="libwinpthread" Guid="12345678-1234-1234-1234-222222222231">
+                  <Component Id="libwinpthread" Guid="*">
                      <File Id="libwinpthread.1" Source="tor-win32.0.4.6.9\Tor\libwinpthread-1.dll" KeyPath="yes"/>
                   </Component>
-                  <Component Id="tor.gencert" Guid="12345678-1234-1234-1234-222222222232">
+                  <Component Id="tor.gencert" Guid="*">
                      <File Id="tor.gencert" Source="tor-win32.0.4.6.9\Tor\tor-gencert.exe" KeyPath="yes"/>
                   </Component>
-                  <Component Id="tor" Guid="12345678-1234-1234-1234-222222222233">
+                  <Component Id="tor" Guid="*">
                      <File Id="tor" Source="tor-win32.0.4.6.9\Tor\tor.exe" KeyPath="yes"/>
                   </Component>
-                  <Component Id="zlib" Guid="12345678-1234-1234-1234-222222222234">
+                  <Component Id="zlib" Guid="*">
                      <File Id="zlib1" Source="tor-win32.0.4.6.9\Tor\zlib1.dll" KeyPath="yes"/>
                   </Component>
                </Directory>
@@ -57,7 +96,12 @@
          </Directory>
       </Directory>
 
+      <Property Id="WIXUI_INSTALLDIR" Value="ApplicationFolder"/>
+      <UIRef Id="WixUI_InstallDir"/>
+
       <Feature Id="DefaultFeature" Level="1">
+         <ComponentRef Id="ApplicationShortcutDesktop"/>
+         <ComponentRef Id="ApplicationShortcutStartup" />
          <ComponentRef Id="geoip"/>
          <ComponentRef Id="geoip6"/>
          <ComponentRef Id="libcrypto"/>
