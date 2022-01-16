@@ -1,5 +1,5 @@
 [![★](https://img.shields.io/github/stars/sammygrey/Torpedo?label=❤)](https://github.com/sammygrey/Torpedo/stargazers)
-[![License](https://img.shields.io/github/license/sammygrey/Torpedo.svg)](https://github.com/sammygrey/Torpedo/LICENSE)
+[![License](https://img.shields.io/github/license/sammygrey/Torpedo.svg)](./LICENSE)
 
 # Torpedo
 
@@ -28,3 +28,5 @@ Torpedo is fully open source and you may change and distribute it however you li
 ### Third-Party Disclaimer
 
 Torpedo is not registered as a subsidiary under The Tor Project nor do we claim ownership of any of the files we have created an installer for. We are following Tor's open source license for modification and distribution. For questions surrounding the Tor protocol and browser please view our license file [here](https://github.com/sammygrey/Torpedo/blob/main/LICENSE).
+
+The files provided by Tor also utilize a number of dependencies: libcrypto and libssl from [OpenSSL](https://github.com/openssl/openssl), [libevent](https://github.com/libevent/libevent), [libgcc](https://github.com/gcc-mirror/gcc/tree/master/libgcc) and [libssp](https://github.com/gcc-mirror/gcc/tree/master/libssp) from the [GNU Compiler Collection](https://github.com/gcc-mirror/gcc), and [zlib](https://github.com/madler/zlib). We do not take credit for these files and, please, check out the repositories hyperlinked here. It wouldn't be possible to do this without them.
