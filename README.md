@@ -1,5 +1,4 @@
 [![★](https://img.shields.io/github/stars/sammygrey/Torpedo?label=❤)](https://github.com/sammygrey/Torpedo/stargazers)
-[![License](https://img.shields.io/github/license/sammygrey/Torpedo.svg)](./LICENSE)
 
 # Torpedo
 
